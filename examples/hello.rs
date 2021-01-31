@@ -1,6 +1,6 @@
 use baseview::{Event, Window, WindowHandler, WindowScalePolicy};
 use raw_gl_context::{GlConfig, GlContext};
-use sepia::{elem_base, elem_children, Elem, ElemBase, ElemWalker, Ui};
+use sepia::{Elem, ElemBase, ElemWalker, Ui};
 
 struct Parent {
     base: ElemBase,
@@ -9,8 +9,12 @@ struct Parent {
 }
 
 impl Elem for Parent {
-    elem_base!(base);
-    elem_children!(child_a, child_b);
+    fn base(&self) -> &ElemBase { &self.base }
+
+    fn walk(&mut self, walker: &mut ElemWalker) {
+        walker.walk(&mut self.child_a);
+        walker.walk(&mut self.child_b);
+    }
 }
 
 struct Child {
@@ -18,7 +22,7 @@ struct Child {
 }
 
 impl Elem for Child {
-    elem_base!(base);
+    fn base(&self) -> &ElemBase { &self.base }
 }
 
 struct Example {

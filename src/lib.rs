@@ -39,30 +39,6 @@ impl Node {
 
 pub trait Elem {
     fn base(&self) -> &ElemBase;
-    fn base_mut(&mut self) -> &mut ElemBase;
-    fn walk(&mut self, _walker: &mut ElemWalker) {}
-}
 
-#[macro_export]
-macro_rules! elem_base {
-    ($base:ident) => {
-        fn base(&self) -> &ElemBase {
-            &self.$base
-        }
-
-        fn base_mut(&mut self) -> &mut ElemBase {
-            &mut self.$base
-        }
-    };
-}
-
-#[macro_export]
-macro_rules! elem_children {
-    ($($child:ident),*) => {
-        fn walk(&mut self, walker: &mut ElemWalker) {
-            $(
-                walker.walk(&mut self.$child);
-            )*
-        }
-    }
+    fn walk(&mut self, walker: &mut ElemWalker) {}
 }
