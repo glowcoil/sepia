@@ -28,7 +28,7 @@ struct Example {
 }
 
 impl WindowHandler for Example {
-    fn on_frame(&mut self) {
+    fn on_frame(&mut self, _window: &mut Window) {
         self.context.make_current();
 
         unsafe {

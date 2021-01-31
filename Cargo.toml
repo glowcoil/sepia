@@ -7,6 +7,6 @@ edition = "2018"
 [dependencies]
 
 [dev-dependencies]
-baseview = { git = "https://github.com/rustaudio/baseview" }
+baseview = { git = "https://github.com/rustaudio/baseview", rev = "663f9d5d4cf80bfa384cc5d2f7aae84f697076e1" }
 raw-gl-context = "0.1.2"
 gl = "*"
